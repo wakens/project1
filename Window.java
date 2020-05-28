@@ -2,8 +2,6 @@ import javax.swing.Icon;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 
- 
-
 public class Window
 {
     /*
