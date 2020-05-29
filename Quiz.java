@@ -2,6 +2,7 @@ import java.util.Random;
 
 public class Quiz
 {
+    // INSTANCE VARIABLES
     static Random rand;
     static Window w;
     static boolean continuePlaying;
@@ -9,6 +10,9 @@ public class Quiz
     static int correct;
     private static final String[] Replay;
     
+	/*
+	 * This is just a way to have everything be static.
+	 */
     static {
         Quiz.rand = new Random();
         Quiz.w = new Window();
@@ -17,7 +21,13 @@ public class Quiz
         Quiz.correct = 0;
         Replay = new String[] { "Start learning!" };
     }
-    
+	
+    /*
+	 * This method, main, runs the game using the other methods found in this class.
+	 * It begins by introducing the user to the program, as well as introducting
+	 * that exit and quit can be used to end the program. It asks the user for the
+	 * amount of questions, and when completed tells them how many they got right.
+	 */
     public static void main(final String[] args) {
         final boolean test2 = false;
         int check = 0;
@@ -71,7 +81,12 @@ public class Quiz
             System.exit(0);
         }
     }
-    
+	
+    /*
+	 * This method returns an operator, either a "-" sign or a "+" sign.
+	 * This method uses these operators to calculate in calcAnswer as well
+	 * as to display the question in evaluateQuestion.
+	 */
     public static char genOperator(final int a) {
         switch (a) {
             case 0: {
@@ -82,17 +97,25 @@ public class Quiz
             }
         }
     }
-    
+	
+    /*
+	 * This method uses all the information about the question in order to present it to the user.
+	 * This method does not calculate anything, and is instead used to display the question.
+	 */
     public static String evaluateQuestion(int n1, int n2, final char operator, final int cnt, final int lo) {
         if (n1 - n2 < 0) {
             final int n3 = n1;
             n1 = n2;
             n2 = n3;
-            return "Question #" + cnt + " out of " + lo + "\nThe problem is: " + n1 + " " + operator + " " + n2 + ".";
         }
         return "Question #" + cnt + " out of " + lo + "\nThe problem is: " + n1 + " " + operator + " " + n2 + ".";
     }
-    
+	
+    /*
+	 * This method uses the two numbers and the given operator to calculate what the right answer
+	 * is for that problem. In the main method, it is used to compare the user's answer and check
+	 * if it is right.
+	 */
     public static int calcAnswer(int n1, int n2, final char operator) {
         if (n1 - n2 < 0) {
             final int n3 = n1;
@@ -111,7 +134,13 @@ public class Quiz
             }
         }
     }
-    
+	
+    /*
+	 * This method checks the string to see if the user has put in an integer.
+	 * If they have put a quit or exit that means they want to end the test, so the window closes
+	 * and due to not completing the test they are not given results.
+	 * If they didn't input either of these commands, they are asked to input a number or exit/quit.
+	 */
     public static String CheckStr(final String input) {
         try {
             Integer.parseInt(input);
@@ -133,13 +162,18 @@ public class Quiz
         }
         return input;
     }
-    
+	
+    /*
+	 * This method is called at the end of the quiz, and gives the user their final score in the test.
+	 * If it's a bad score, it gives the percentage and asks the user to improve on the next test.
+	 * If it's a good score, it displays the percentage and congratulates them.
+	 */
     public static void endScore(final int a, final int b) {
         if (a / (double)b * 100.0 < 1.0) {
             Quiz.w.msg("You got 0.0% correct... Try and take another test and improve!");
         }
         else {
-            Quiz.w.msg("You got " + a / (double)b * 100.0 + "% correct!");
+            Quiz.w.msg("You got " + a / (double)b * 100.0 + "% correct! Good job!");
         }
     }
 }
