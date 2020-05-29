@@ -11,7 +11,7 @@ public class Quiz
     private static final String[] Replay;
     
 	/*
-	 * This is just a way to have everything be static.
+	 * This is just a way to have all the variables inside be static.
 	 */
     static {
         Quiz.rand = new Random();
